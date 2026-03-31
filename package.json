@@ -1,0 +1,9 @@
+{
+  "name": "focus-flow",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "start": "python3 -m http.server 5500",
+    "check": "node --check js/constants.js && node --check js/scoring.js && node --check js/storage.js && node --check js/camera.js && node --check js/app.js"
+  }
+}

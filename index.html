@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Study Buddy</title>
+  <meta name="description" content="Smart Study Buddy - Your personal focus companion" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="bg-layer" aria-hidden="true">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <div class="app-shell">
+      <div class="top-actions">
+        <span class="app-brand">Focus Flow</span>
+        <button id="homeBtn" class="btn btn-glass btn-small" type="button">Home</button>
+      </div>
+
+    <button id="darkModeToggle" class="dark-toggle" type="button" aria-label="Toggle dark mode">
+      <span id="darkModeIcon">🌙</span>
+    </button>
+
+    <section id="entryView" class="view entry-view">
+      <div id="entryCard" class="entry-content fade-ready">
+        <div class="logo-wrap">
+          <div class="logo-circle breathe">✨</div>
+          <h1>Smart Study Buddy</h1>
+          <p>Your personal focus companion</p>
+        </div>
+
+        <div class="glass-card quote-card">
+          <div class="quote-emoji">💭</div>
+          <blockquote id="quoteText"></blockquote>
+          <cite id="quoteAuthor"></cite>
+        </div>
+
+        <button id="startBtn" class="btn btn-hero btn-xl" type="button">
+          <span>Let's Start</span>
+          <span>🚀</span>
+        </button>
+
+        <p class="entry-hint">Stay focused, stay productive</p>
+      </div>
+    </section>
+
+    <section id="dashboardView" class="view hidden">
+      <nav class="top-nav glass-card">
+        <button id="timerTab" class="tab-btn active" type="button">⏱ Timer</button>
+        <button id="statsTab" class="tab-btn" type="button">📊 Stats</button>
+      </nav>
+
+      <main class="content-area">
+        <section id="timerView" class="panel fade-in">
+          <div class="session-counter">
+            <span class="dot"></span>
+            Sessions completed today: <span id="sessionsToday">0</span>
+          </div>
+
+          <div class="timer-display-wrap" id="timerGlowWrap">
+            <div id="timerEmoji" class="timer-emoji emoji-bounce">📖</div>
+            <div class="timer-circle">
+              <div id="timerText" class="timer-text">25:00</div>
+              <div id="timerStatus" class="timer-status">Ready</div>
+            </div>
+            <button id="primaryTimerBtn" class="btn btn-hero btn-xl primary-timer-action" type="button">
+              <span id="primaryTimerBtnIcon">▶</span>
+              <span id="primaryTimerBtnText">Start Session</span>
+            </button>
+          </div>
+
+          <div class="progress-wrap">
+            <div class="progress-head">
+              <span>Progress</span>
+              <span id="progressLabel">0%</span>
+            </div>
+            <div class="progress-track">
+              <div id="progressBar" class="progress-indicator progress-success"></div>
+            </div>
+          </div>
+
+          <div class="glass-card message-card">
+            <p id="motivationalMessage"></p>
+          </div>
+
+            <div class="focus-badge">
+              <span id="focusEmoji">😄</span>
+              <div>
+                <div class="focus-label">Focus Score</div>
+                <div id="focusScore" class="focus-value">100</div>
+                <div class="focus-legend">100 - focus penalties</div>
+              </div>
+            </div>
+
+            <div class="live-chips">
+              <span class="chip">Tab Switches: <strong id="tabSwitchChip">0</strong></span>
+              <span class="chip">Not In Front: <strong id="noFaceChip">0s</strong></span>
+            </div>
+
+            <div class="control-panels">
+              <div class="control-card glass-card">
+                <h3 class="control-title">Timer Setup</h3>
+                <div id="timerEditor" class="timer-editor">
+                  <label for="minutesInput">Min</label>
+                  <input id="minutesInput" type="number" min="0" max="999" value="25" />
+                  <span>:</span>
+                  <label for="secondsInput" class="sr-only">Sec</label>
+                  <input id="secondsInput" type="number" min="0" max="59" value="00" />
+                  <button id="applyTimeBtn" class="btn btn-glass btn-small" type="button">Set Time</button>
+                </div>
+                <div id="presetSelector" class="preset-selector"></div>
+              </div>
+
+              <div class="control-card glass-card">
+                <h3 class="control-title">Camera Presence</h3>
+                <div class="camera-controls">
+                  <button id="cameraToggleBtn" class="btn btn-glass btn-small" type="button">Enable Camera</button>
+                  <p id="cameraStatusText" class="camera-status">Camera is off. Enable it to track study presence.</p>
+                  <p id="detectionEngineText" class="camera-status">Detection engine: Not active</p>
+                </div>
+              </div>
+            </div>
+
+          <div id="timerControls" class="timer-controls"></div>
+          <p id="statusHint" class="status-hint"></p>
+        </section>
+
+        <section id="statsView" class="panel hidden fade-in">
+          <div class="stats-header">
+            <h2>Your Statistics</h2>
+            <p>Track your study progress</p>
+            <button id="scoreInfoBtn" class="btn btn-glass btn-small score-info-btn" type="button">How score works</button>
+          </div>
+
+          <div id="statsGrid" class="stats-grid"></div>
+          <div id="sessionSummaryCard" class="glass-card session-summary hidden">
+            <h3>Last Session Summary</h3>
+            <p id="sessionSummaryText"></p>
+          </div>
+          <div id="emptyState" class="empty-state hidden">
+            <div class="empty-emoji">📚</div>
+            <p class="empty-title">No sessions yet</p>
+            <p class="empty-sub">Complete your first focus session to see stats!</p>
+          </div>
+        </section>
+      </main>
+    </section>
+
+    <footer class="footer-note">Smart Study Buddy v1.0</footer>
+    <div id="scoreModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="scoreModalTitle">
+      <div class="modal-card glass-card">
+        <div class="modal-head">
+          <h3 id="scoreModalTitle">Focus Score Calculation</h3>
+          <button id="closeScoreModalBtn" class="btn btn-glass btn-small" type="button">Close</button>
+        </div>
+        <div id="scoreFormulaText" class="modal-body"></div>
+      </div>
+    </div>
+    <div id="toastContainer" class="toast-container"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_detection/face_detection.js"></script>
+  <script src="js/constants.js"></script>
+  <script src="js/scoring.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/camera.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
